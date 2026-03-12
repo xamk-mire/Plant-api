@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: plant-mock-db
+    environment:
+      POSTGRES_USER: plantuser
+      POSTGRES_PASSWORD: plantpass
+      POSTGRES_DB: plant_mock_db
+    ports:
+      - "5433:5432"  # 5433 on host to avoid conflict with local PostgreSQL
+    volumes:
+      - plant_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U plantuser -d plant_mock_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  plant_db_data:
