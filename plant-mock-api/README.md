@@ -230,6 +230,14 @@ python -m scripts.seed_plants
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
+### API docs
+
+Use the scalar API to test API endpoints
+
+```
+http://localhost:8000/docs
+```
+
 ### Add API Key
 
 ```bash
